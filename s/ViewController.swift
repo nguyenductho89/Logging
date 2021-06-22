@@ -10,7 +10,7 @@ import OSLog
 
 class ViewController: UIViewController {
     var count = 0
-    let log = Logger.init(subsystem: "test", category: "tstcae")
+    //let log = Logger.init(subsystem: "test", category: "tstcae")
     //open a new Pipe to consume the messages on STDOUT and STDERR
     let inputPipe = Pipe()
     //open another Pipe to output messages back to STDOUT
