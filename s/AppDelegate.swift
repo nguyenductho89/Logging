@@ -52,12 +52,76 @@ class TLogger {
 }
 
 extension UIView {
-    func jsonDescription() -> Dictionary<String, Any> {
+    @objc func jsonDescription() -> Dictionary<String, Any> {
         let sub = self.subviews.compactMap {$0.jsonDescription()}
         guard !sub.isEmpty else {
-            return [self.description:""]
+            return [String(describing: Self.self):""]
         }
-        return [self.description:sub]
+        return [String(describing: Self.self):sub]
+    }
+}
+
+extension UIButton {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self):[
+            "frame": "\(self.frame)",
+            "title": self.currentTitle ?? ""
+        ]]
+    }
+}
+
+extension UILabel {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self):[
+            "frame":"\(self.frame)",
+            "text": self.text ?? "",
+            "attributedText": self.attributedText?.string ?? ""
+        ]]
+    }
+}
+
+extension UITextView {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self):[
+            "frame":"\(self.frame)",
+            "text": self.text ?? "",
+        ]]
+    }
+}
+
+extension UITextField {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self):[
+            "frame":"\(self.frame)",
+            "text": self.text ?? "",
+        ]]
+    }
+}
+
+extension UICollectionView {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self):[
+                    "frame":"\(self.frame)"        ]]
+    }
+}
+
+extension UITableView {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self):[
+                    "frame":"\(self.frame)"        ]]
+    }
+}
+
+extension UITableViewCell {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self): self.contentView.jsonDescription()]
+    }
+}
+
+extension UIImageView {
+    override func jsonDescription() -> Dictionary<String, Any> {
+        return [String(describing: Self.self):[
+                    "frame":"\(self.frame)"        ]]
     }
 }
 
