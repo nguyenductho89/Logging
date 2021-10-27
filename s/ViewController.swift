@@ -8,43 +8,26 @@
 import UIKit
 import OSLog
 
-class ViewController: UIViewController {
-    var count = 0
-    //let log = Logger.init(subsystem: "test", category: "tstcae")
-    //open a new Pipe to consume the messages on STDOUT and STDERR
-    let inputPipe = Pipe()
-    //open another Pipe to output messages back to STDOUT
-    let outputPipe = Pipe()
-    let textView = UITextView.init(frame: CGRect.init(origin: CGPoint.init(x: 0, y: 200), size: CGSize.init(width: 300, height: 300)))
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.view.backgroundColor = .red
-        let button = UIButton.init(type: .system)
-        button.frame = CGRect.init(origin: .zero, size: CGSize.init(width: 100, height: 100))
-        button.backgroundColor = .lightGray
-        button.setTitle("fffffff", for: .normal)
-        button.addTarget(self, action: #selector(printff), for: .touchUpInside)
-        
-        self.view.addSubview(button)
-        self.view.addSubview(textView)
-        openConsolePipe()
-    }
-    
-    @objc func printff() {
-        count += 1
-        print(count)
-    }
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func openConsolePipe() {
+//class ViewController: UIViewController {
+//    override func viewDidLoad() {
+//        self.view.backgroundColor = .green
+//    }
+//}
 
-        
+class ConsolePipe {
+    //open a new Pipe to consume the messages on STDOUT and STDERR
+    private let inputPipe = Pipe()
+    //open another Pipe to output messages back to STDOUT
+    private let outputPipe = Pipe()
+    
+    static let share = ConsolePipe()
+    
+    static func startLog() {
+        ConsolePipe.share.openConsolePipe()
+    }
+    
+    private func openConsolePipe() {
         let pipeReadHandle = inputPipe.fileHandleForReading
-        
         //from documentation
         //dup2() makes newfd (new file descriptor) be the copy of oldfd (old file descriptor), closing newfd first if necessary.
         
@@ -65,7 +48,7 @@ class ViewController: UIViewController {
         pipeReadHandle.readInBackgroundAndNotify()
     }
     
-    @objc func handlePipeNotification(notification: Notification) {
+    @objc private func handlePipeNotification(notification: Notification) {
         //note you have to continuously call this when you get a message
         //see this from documentation:
         //Note that this method does not cause a continuous stream of notifications to be sent. If you wish to keep getting notified, you’ll also need to call readInBackgroundAndNotify() in your observer method.
@@ -73,8 +56,8 @@ class ViewController: UIViewController {
         
         if let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data,
            let str = String(data: data, encoding: String.Encoding.ascii) {
-            DispatchQueue.main.async {[weak self] in
-                        self?.textView.text += str
+            DispatchQueue.main.async {
+                ConsolePipe.consoleOutput?(str)
                     }
             //write the data back into the output pipe. the output pipe's write file descriptor points to STDOUT. this allows the logs to show up on the xcode console
             outputPipe.fileHandleForWriting.write(data)
@@ -86,5 +69,34 @@ class ViewController: UIViewController {
             //you could do this in your notification handler in the app delegate.
         }
     }
+    
+    static var consoleOutput: ((String) -> Void)?
+
 }
 
+class ViewController: UIViewController {
+    var count = 0
+    
+    let textView = UITextView.init(frame: CGRect.init(origin: CGPoint.init(x: 0, y: 200), size: CGSize.init(width: 300, height: 300)))
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .red
+        let button = UIButton.init(type: .system)
+        button.frame = CGRect.init(origin: .zero, size: CGSize.init(width: 100, height: 100))
+        button.backgroundColor = .lightGray
+        button.setTitle("fffffff", for: .normal)
+        button.addTarget(self, action: #selector(printff), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+        self.view.addSubview(textView)
+        ConsolePipe.consoleOutput = {[weak self] logString in
+            self?.textView.text += logString
+        }
+    }
+    
+    @objc func printff() {
+        count += 1
+        print(count)
+    }
+}

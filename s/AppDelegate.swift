@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         TLogger.start()
-        
+        ConsolePipe.startLog()
         //Trigger logging top most view controller
         return true
     }
