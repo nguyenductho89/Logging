@@ -90,9 +90,7 @@ class ViewController: UIViewController {
         
         self.view.addSubview(button)
         self.view.addSubview(textView)
-        ConsolePipe.consoleOutput = {[weak self] logString in
-            self?.textView.text += logString
-        }
+        
     }
     
     @objc func printff() {

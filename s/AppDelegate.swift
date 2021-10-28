@@ -10,14 +10,19 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var debugWindow: UIWindow?
+    var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         TLogger.start()
         ConsolePipe.startLog()
         //Trigger logging top most view controller
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        debugWindow = UIWindow(frame: self.window!.bounds)
+        debugWindow?.rootViewController = DebugViewController(nibName: "DebugViewController", bundle: nil)
+        debugWindow?.windowLevel = UIWindow.Level.alert
+        debugWindow?.makeKeyAndVisible()
         return true
     }
 
@@ -34,6 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    func showDebugWindow() {
+        if debugWindow?.isHidden ?? true {
+            debugWindow?.makeKeyAndVisible()
+            (debugWindow?.rootViewController as? DebugViewController)?.updateDebug()
+        } else {
+            debugWindow?.resignKey()
+            debugWindow?.isHidden = true
+        }
+        
+    }
+
 }
 
 class TLogger {
@@ -160,3 +177,10 @@ extension UINavigationController {
     }
 }
 
+extension UIWindow {
+    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            (UIApplication.shared.delegate as! AppDelegate).showDebugWindow()
+        }
+    }
+}
