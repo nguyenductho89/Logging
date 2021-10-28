@@ -23,6 +23,7 @@ class DebugViewController: UIViewController {
     func updateDebug() {
         ConsolePipe.consoleOutput = {[weak self] logString in
             self?.debugTextview.text += logString
+            self?.debugTextview.scrollToBottom()
         }
     }
     
@@ -30,5 +31,13 @@ class DebugViewController: UIViewController {
     @IBAction func close(_ sender: Any) {
         self.view.window?.resignKey()
         self.view.window?.isHidden = true
+    }
+}
+
+extension UITextView {
+    func scrollToBottom() {
+        let textCount: Int = text.count
+        guard textCount >= 1 else { return }
+        scrollRangeToVisible(NSRange(location: textCount - 1, length: 1))
     }
 }

@@ -9,20 +9,15 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var debugWindow: UIWindow?
     var window: UIWindow?
+    var debugWindow: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        TLogger.start()
-        ConsolePipe.startLog()
-        //Trigger logging top most view controller
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        debugWindow = UIWindow(frame: self.window!.bounds)
-        debugWindow?.rootViewController = DebugViewController(nibName: "DebugViewController", bundle: nil)
-        debugWindow?.windowLevel = UIWindow.Level.alert
-        debugWindow?.makeKeyAndVisible()
+       
+        
+//        //Trigger logging top most view controller
+        
         return true
     }
 
@@ -40,16 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    func showDebugWindow() {
-        if debugWindow?.isHidden ?? true {
-            debugWindow?.makeKeyAndVisible()
-            (debugWindow?.rootViewController as? DebugViewController)?.updateDebug()
-        } else {
-            debugWindow?.resignKey()
-            debugWindow?.isHidden = true
-        }
-        
-    }
+
 
 }
 
@@ -174,13 +160,5 @@ extension UITabBarController {
 extension UINavigationController {
     override func topMostViewController() -> UIViewController {
         return self.visibleViewController!.topMostViewController()
-    }
-}
-
-extension UIWindow {
-    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            (UIApplication.shared.delegate as! AppDelegate).showDebugWindow()
-        }
     }
 }

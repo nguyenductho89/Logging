@@ -8,11 +8,44 @@
 import UIKit
 import OSLog
 
-//class ViewController: UIViewController {
-//    override func viewDidLoad() {
-//        self.view.backgroundColor = .green
-//    }
-//}
+class DebugManager {
+    
+    static let shared = DebugManager()
+    private let debugVC = DebugViewController(nibName: "DebugViewController", bundle: nil)
+    
+    private var debugWindow: UIWindow?
+    
+    func startDebugWindow() {
+        ConsolePipe.startLog()
+            if debugWindow == nil {
+                if #available(iOS 13, *) {
+                    debugWindow = UIWindow.init(windowScene: UIApplication.shared.windows.filter {$0.isKeyWindow}.first!.windowScene!)
+                } else {
+                    debugWindow = UIWindow(frame: UIApplication.shared.keyWindow!.frame)
+                }
+                debugWindow?.rootViewController = debugVC
+                debugWindow?.windowLevel = UIWindow.Level.alert + 1
+            }
+    }
+    
+    fileprivate func showDebugWindow() {
+        if debugWindow?.isHidden ?? true {
+            debugWindow?.makeKeyAndVisible()
+            debugVC.updateDebug()
+        } else {
+            debugWindow?.resignKey()
+            debugWindow?.isHidden = true
+        }
+    }
+}
+
+extension UIWindow {
+    open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            DebugManager.shared.showDebugWindow()
+        }
+    }
+}
 
 class ConsolePipe {
     //open a new Pipe to consume the messages on STDOUT and STDERR
