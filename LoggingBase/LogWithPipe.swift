@@ -64,7 +64,7 @@ extension UIWindow  {
     }
 }
 
-fileprivate class ConsolePipe {
+class ConsolePipe {
     //open a new Pipe to consume the messages on STDOUT and STDERR
     private let inputPipe = Pipe()
     //open another Pipe to output messages back to STDOUT
@@ -74,7 +74,7 @@ fileprivate class ConsolePipe {
     
     var output: LogOutput?
     
-    fileprivate func openConsolePipe() {
+    func openConsolePipe() {
         let pipeReadHandle = inputPipe.fileHandleForReading
         //from documentation
         //dup2() makes newfd (new file descriptor) be the copy of oldfd (old file descriptor), closing newfd first if necessary.

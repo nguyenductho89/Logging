@@ -18,14 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
 //        TLogger.start()
-        DebugManager.shared.startDebugWindow(scene)
+        ///DebugManager.shared.startDebugWindow(scene)
 ////        //Trigger logging top most view controller
 //        let debugVC = DebugViewController(nibName: "DebugViewController", bundle: nil)
 //        debugWindow = UIWindow.init(windowScene: scene)
 //        debugWindow?.rootViewController = debugVC
 //        debugWindow?.windowLevel = UIWindow.Level.alert
         print("sseeee ")
-        
+        DebugNetworkManager.shared.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

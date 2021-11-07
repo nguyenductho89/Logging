@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,23 @@
 		D0A84947272A65D200F4E694 /* DebugViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A84945272A65D200F4E694 /* DebugViewController.xib */; };
 		D0CE98E727383430006EC8AD /* LogWithPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CE98E527383430006EC8AD /* LogWithPipe.swift */; };
 		D0CE98E827383430006EC8AD /* LogWithUDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CE98E627383430006EC8AD /* LogWithUDP.swift */; };
+		D0CE98EB2738349A006EC8AD /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0CE98EA2738349A006EC8AD /* SwiftSocket.framework */; platformFilter = ios; };
+		D0CE98EC2738349A006EC8AD /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0CE98EA2738349A006EC8AD /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D0CE98ED2738349A006EC8AD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D0CE98EC2738349A006EC8AD /* SwiftSocket.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D08E47C4267CE852009F3A28 /* LoggingBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoggingBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,6 +49,7 @@
 		D0B9F2D2267E0C5E00B61F9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D0CE98E527383430006EC8AD /* LogWithPipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWithPipe.swift; sourceTree = "<group>"; };
 		D0CE98E627383430006EC8AD /* LogWithUDP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWithUDP.swift; sourceTree = "<group>"; };
+		D0CE98EA2738349A006EC8AD /* SwiftSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSocket.framework; path = LoggingBase/Socket/SwiftSocket.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CE98EB2738349A006EC8AD /* SwiftSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +69,7 @@
 			children = (
 				D08E47C6267CE852009F3A28 /* LoggingBase */,
 				D08E47C5267CE852009F3A28 /* Products */,
+				D0CE98E927383499006EC8AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +100,14 @@
 			path = LoggingBase;
 			sourceTree = "<group>";
 		};
+		D0CE98E927383499006EC8AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D0CE98EA2738349A006EC8AD /* SwiftSocket.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -91,6 +118,7 @@
 				D08E47C0267CE852009F3A28 /* Sources */,
 				D08E47C1267CE852009F3A28 /* Frameworks */,
 				D08E47C2267CE852009F3A28 /* Resources */,
+				D0CE98ED2738349A006EC8AD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -305,6 +333,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LoggingBase/Socket",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/LoggingBase/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -324,6 +356,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LoggingBase/Socket",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/LoggingBase/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

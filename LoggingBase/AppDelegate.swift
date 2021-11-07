@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else {
             return true
         }
-        DebugManager.shared.startDebugWindow(window)
+       // DebugManager.shared.startDebugWindow(window)
         print("appdelega ")
 
         return true

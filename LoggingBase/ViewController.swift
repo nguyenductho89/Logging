@@ -28,10 +28,10 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DebugManager.shared.consoleOutput.append({[weak self] tex in
-            guard let self = self else {return}
-            self.textView.text += tex
-        })
+//        DebugManager.shared.consoleOutput.append({[weak self] tex in
+//            guard let self = self else {return}
+//            self.textView.text += tex
+//        })
     }
     
     @objc func printff() {
