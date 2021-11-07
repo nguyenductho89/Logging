@@ -7,31 +7,47 @@
 
 import UIKit
 import OSLog
-
+typealias LogOutput = (String)->()
 class DebugManager {
     
     static let shared = DebugManager()
     private let debugVC = DebugViewController(nibName: "DebugViewController", bundle: nil)
-    
+    private let consolePipe = ConsolePipe.share
     private var debugWindow: UIWindow?
     
-    func startDebugWindow() {
-        ConsolePipe.startLog()
-            if debugWindow == nil {
-                if #available(iOS 13, *) {
-                    debugWindow = UIWindow.init(windowScene: UIApplication.shared.windows.filter {$0.isKeyWindow}.first!.windowScene!)
-                } else {
-                    debugWindow = UIWindow(frame: UIApplication.shared.keyWindow!.frame)
-                }
-                debugWindow?.rootViewController = debugVC
-                debugWindow?.windowLevel = UIWindow.Level.alert + 1
-            }
+    var consoleOutput: [LogOutput] = []
+    
+    init() {
+        setvbuf(stdout, nil, _IOLBF, 0)
+        consolePipe.openConsolePipe()
+        consolePipe.output = {[weak self] logString in
+            _ = self?.consoleOutput.map {$0(logString)}
+        }
     }
     
-    fileprivate func showDebugWindow() {
+    func startDebugWindow(_ scene: UIWindowScene) {
+        if #available(iOS 13, *) {
+            debugWindow = UIWindow.init(windowScene: scene)
+        }
+        debugWindow?.rootViewController = debugVC
+        debugWindow?.windowLevel = UIWindow.Level.alert + 1
+        consolePipe.output = {[weak self] logString in
+            self?.debugVC.updateDebug(logString)
+        }
+    }
+    
+    func startDebugWindow(_ window: UIWindow) {
+        debugWindow = UIWindow(frame: window.frame)
+        debugWindow?.rootViewController = debugVC
+        debugWindow?.windowLevel = UIWindow.Level.alert + 1
+        consolePipe.output = {[weak self] logString in
+            self?.debugVC.updateDebug(logString)
+        }
+    }
+    
+    func showDebugWindow() {
         if debugWindow?.isHidden ?? true {
             debugWindow?.makeKeyAndVisible()
-            debugVC.updateDebug()
         } else {
             debugWindow?.resignKey()
             debugWindow?.isHidden = true
@@ -39,7 +55,7 @@ class DebugManager {
     }
 }
 
-extension UIWindow {
+extension UIWindow  {
     open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             DebugManager.shared.showDebugWindow()
@@ -47,7 +63,7 @@ extension UIWindow {
     }
 }
 
-class ConsolePipe {
+fileprivate class ConsolePipe {
     //open a new Pipe to consume the messages on STDOUT and STDERR
     private let inputPipe = Pipe()
     //open another Pipe to output messages back to STDOUT
@@ -55,11 +71,9 @@ class ConsolePipe {
     
     static let share = ConsolePipe()
     
-    static func startLog() {
-        ConsolePipe.share.openConsolePipe()
-    }
+    var output: LogOutput?
     
-    private func openConsolePipe() {
+    fileprivate func openConsolePipe() {
         let pipeReadHandle = inputPipe.fileHandleForReading
         //from documentation
         //dup2() makes newfd (new file descriptor) be the copy of oldfd (old file descriptor), closing newfd first if necessary.
@@ -89,9 +103,7 @@ class ConsolePipe {
         
         if let data = notification.userInfo?[NSFileHandleNotificationDataItem] as? Data,
            let str = String(data: data, encoding: String.Encoding.ascii) {
-            DispatchQueue.main.async {
-                ConsolePipe.consoleOutput?(str)
-                    }
+            output?(str)
             //write the data back into the output pipe. the output pipe's write file descriptor points to STDOUT. this allows the logs to show up on the xcode console
             outputPipe.fileHandleForWriting.write(data)
             
@@ -102,9 +114,6 @@ class ConsolePipe {
             //you could do this in your notification handler in the app delegate.
         }
     }
-    
-    static var consoleOutput: ((String) -> Void)?
-
 }
 
 class ViewController: UIViewController {
@@ -124,6 +133,14 @@ class ViewController: UIViewController {
         self.view.addSubview(button)
         self.view.addSubview(textView)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DebugManager.shared.consoleOutput.append({[weak self] tex in
+            guard let self = self else {return}
+            self.textView.text += tex
+        })
     }
     
     @objc func printff() {

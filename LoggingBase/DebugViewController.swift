@@ -17,14 +17,12 @@ class DebugViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateDebug()
     }
     
-    func updateDebug() {
-        ConsolePipe.consoleOutput = {[weak self] logString in
-            self?.debugTextview.text += logString
-            self?.debugTextview.scrollToBottom()
-        }
+    func updateDebug(_ log: String) {
+        guard let textView = self.debugTextview else {return}
+        textView.text += log
+        textView.scrollToBottom()
     }
     
     

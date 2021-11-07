@@ -15,9 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
        
-        
 //        //Trigger logging top most view controller
-        
+        guard let window = window else {
+            return true
+        }
+        DebugManager.shared.startDebugWindow(window)
+        print("appdelega ")
+
         return true
     }
 
