@@ -7,12 +7,20 @@
 
 import Foundation
 import SwiftSocket
+
+//nc -ul 12345
 class DebugNetworkManager {
     static let shared = DebugNetworkManager()
     private let consolePipe = ConsolePipe.share
-    var host = "127.0.0.1"
-    let port = 12345
-    lazy var client = UDPClient(address: host, port: Int32(port))
+    private var host = "127.0.0.1"
+    private var port = Int32(12345)
+    private lazy var client = UDPClient(address: host, port: port)
+    
+    func setHost(_ host: String, port:Int32) {
+        self.host = host
+        self.port = port
+        client = UDPClient(address: host, port: port)
+    }
     
     func start() {
         setvbuf(stdout, nil, _IOLBF, 0)

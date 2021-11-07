@@ -50,6 +50,8 @@
 		D0CE98E527383430006EC8AD /* LogWithPipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWithPipe.swift; sourceTree = "<group>"; };
 		D0CE98E627383430006EC8AD /* LogWithUDP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWithUDP.swift; sourceTree = "<group>"; };
 		D0CE98EA2738349A006EC8AD /* SwiftSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSocket.framework; path = LoggingBase/Socket/SwiftSocket.framework; sourceTree = "<group>"; };
+		D0E8559E27383E6C0075B914 /* SwiftSocket_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftSocket_iOS.framework; sourceTree = "<group>"; };
+		D0E8559F27383E6C0075B914 /* SwiftSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftSocket.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		D08E47C6267CE852009F3A28 /* LoggingBase */ = {
 			isa = PBXGroup;
 			children = (
+				D0E8559D27383E6C0075B914 /* Socket */,
 				D0CE98E527383430006EC8AD /* LogWithPipe.swift */,
 				D0CE98E627383430006EC8AD /* LogWithUDP.swift */,
 				D0A84944272A65D200F4E694 /* DebugViewController.swift */,
@@ -106,6 +109,15 @@
 				D0CE98EA2738349A006EC8AD /* SwiftSocket.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0E8559D27383E6C0075B914 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				D0E8559E27383E6C0075B914 /* SwiftSocket_iOS.framework */,
+				D0E8559F27383E6C0075B914 /* SwiftSocket.framework */,
+			);
+			path = Socket;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
