@@ -15,6 +15,8 @@
 		D08E47D4267CE855009F3A28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D08E47D2267CE855009F3A28 /* LaunchScreen.storyboard */; };
 		D0A84946272A65D200F4E694 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A84944272A65D200F4E694 /* DebugViewController.swift */; };
 		D0A84947272A65D200F4E694 /* DebugViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A84945272A65D200F4E694 /* DebugViewController.xib */; };
+		D0CE98E727383430006EC8AD /* LogWithPipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CE98E527383430006EC8AD /* LogWithPipe.swift */; };
+		D0CE98E827383430006EC8AD /* LogWithUDP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CE98E627383430006EC8AD /* LogWithUDP.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		D0A84944272A65D200F4E694 /* DebugViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		D0A84945272A65D200F4E694 /* DebugViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugViewController.xib; sourceTree = "<group>"; };
 		D0B9F2D2267E0C5E00B61F9C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D0CE98E527383430006EC8AD /* LogWithPipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWithPipe.swift; sourceTree = "<group>"; };
+		D0CE98E627383430006EC8AD /* LogWithUDP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogWithUDP.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 		D08E47C6267CE852009F3A28 /* LoggingBase */ = {
 			isa = PBXGroup;
 			children = (
+				D0CE98E527383430006EC8AD /* LogWithPipe.swift */,
+				D0CE98E627383430006EC8AD /* LogWithUDP.swift */,
 				D0A84944272A65D200F4E694 /* DebugViewController.swift */,
 				D0A84945272A65D200F4E694 /* DebugViewController.xib */,
 				D08E47C7267CE852009F3A28 /* AppDelegate.swift */,
@@ -148,7 +154,9 @@
 			files = (
 				D08E47CC267CE852009F3A28 /* ViewController.swift in Sources */,
 				D08E47C8267CE852009F3A28 /* AppDelegate.swift in Sources */,
+				D0CE98E827383430006EC8AD /* LogWithUDP.swift in Sources */,
 				D0A84946272A65D200F4E694 /* DebugViewController.swift in Sources */,
+				D0CE98E727383430006EC8AD /* LogWithPipe.swift in Sources */,
 				D08E47CA267CE852009F3A28 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
