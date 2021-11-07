@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D08E47C4267CE852009F3A28 /* s.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = s.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D08E47C4267CE852009F3A28 /* LoggingBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoggingBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08E47C7267CE852009F3A28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D08E47C9267CE852009F3A28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D08E47CB267CE852009F3A28 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		D08E47BB267CE852009F3A28 = {
 			isa = PBXGroup;
 			children = (
-				D08E47C6267CE852009F3A28 /* s */,
+				D08E47C6267CE852009F3A28 /* LoggingBase */,
 				D08E47C5267CE852009F3A28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,12 +53,12 @@
 		D08E47C5267CE852009F3A28 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D08E47C4267CE852009F3A28 /* s.app */,
+				D08E47C4267CE852009F3A28 /* LoggingBase.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D08E47C6267CE852009F3A28 /* s */ = {
+		D08E47C6267CE852009F3A28 /* LoggingBase */ = {
 			isa = PBXGroup;
 			children = (
 				D0A84944272A65D200F4E694 /* DebugViewController.swift */,
@@ -72,15 +72,15 @@
 				D08E47D5267CE855009F3A28 /* Info.plist */,
 				D0B9F2D2267E0C5E00B61F9C /* README.md */,
 			);
-			path = s;
+			path = LoggingBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D08E47C3267CE852009F3A28 /* s */ = {
+		D08E47C3267CE852009F3A28 /* LoggingBase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D08E47D8267CE855009F3A28 /* Build configuration list for PBXNativeTarget "s" */;
+			buildConfigurationList = D08E47D8267CE855009F3A28 /* Build configuration list for PBXNativeTarget "LoggingBase" */;
 			buildPhases = (
 				D08E47C0267CE852009F3A28 /* Sources */,
 				D08E47C1267CE852009F3A28 /* Frameworks */,
@@ -90,9 +90,9 @@
 			);
 			dependencies = (
 			);
-			name = s;
+			name = LoggingBase;
 			productName = s;
-			productReference = D08E47C4267CE852009F3A28 /* s.app */;
+			productReference = D08E47C4267CE852009F3A28 /* LoggingBase.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -109,7 +109,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D08E47BF267CE852009F3A28 /* Build configuration list for PBXProject "s" */;
+			buildConfigurationList = D08E47BF267CE852009F3A28 /* Build configuration list for PBXProject "LoggingBase" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -122,7 +122,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D08E47C3267CE852009F3A28 /* s */,
+				D08E47C3267CE852009F3A28 /* LoggingBase */,
 			);
 		};
 /* End PBXProject section */
@@ -297,7 +297,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = s/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LoggingBase/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,7 +316,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = s/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/LoggingBase/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -332,7 +332,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D08E47BF267CE852009F3A28 /* Build configuration list for PBXProject "s" */ = {
+		D08E47BF267CE852009F3A28 /* Build configuration list for PBXProject "LoggingBase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D08E47D6267CE855009F3A28 /* Debug */,
@@ -341,7 +341,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D08E47D8267CE855009F3A28 /* Build configuration list for PBXNativeTarget "s" */ = {
+		D08E47D8267CE855009F3A28 /* Build configuration list for PBXNativeTarget "LoggingBase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D08E47D9267CE855009F3A28 /* Debug */,
