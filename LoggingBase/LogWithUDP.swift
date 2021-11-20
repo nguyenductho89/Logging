@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftSocket
 //nc -ul 12345
 class DebugNetworkManager {
     static let shared = DebugNetworkManager()

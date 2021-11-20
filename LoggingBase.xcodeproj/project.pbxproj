@@ -3,16 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83349B0827487FFE0020639B /* yudpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = 83349B0127487FFD0020639B /* yudpsocket.c */; };
-		83349B0927487FFE0020639B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83349B0227487FFD0020639B /* Result.swift */; };
-		83349B0A27487FFE0020639B /* TCPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83349B0327487FFE0020639B /* TCPClient.swift */; };
-		83349B0B27487FFE0020639B /* UDPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83349B0427487FFE0020639B /* UDPClient.swift */; };
-		83349B0C27487FFE0020639B /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = 83349B0527487FFE0020639B /* ytcpsocket.c */; };
-		83349B0D27487FFE0020639B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83349B0727487FFE0020639B /* Socket.swift */; };
+		83349B0F274882BA0020639B /* SwiftSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83349B0E274882BA0020639B /* SwiftSocket.framework */; platformFilter = ios; };
+		83349B10274882BA0020639B /* SwiftSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 83349B0E274882BA0020639B /* SwiftSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D08E47C8267CE852009F3A28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08E47C7267CE852009F3A28 /* AppDelegate.swift */; };
 		D08E47CA267CE852009F3A28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08E47C9267CE852009F3A28 /* SceneDelegate.swift */; };
 		D08E47CC267CE852009F3A28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08E47CB267CE852009F3A28 /* ViewController.swift */; };
@@ -32,6 +28,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				83349B10274882BA0020639B /* SwiftSocket.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,14 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		83349B0027487FFD0020639B /* LoggingBase-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoggingBase-Bridging-Header.h"; sourceTree = "<group>"; };
-		83349B0127487FFD0020639B /* yudpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yudpsocket.c; sourceTree = "<group>"; };
-		83349B0227487FFD0020639B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		83349B0327487FFE0020639B /* TCPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPClient.swift; sourceTree = "<group>"; };
-		83349B0427487FFE0020639B /* UDPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPClient.swift; sourceTree = "<group>"; };
-		83349B0527487FFE0020639B /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
-		83349B0627487FFE0020639B /* SwiftSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftSocket.h; sourceTree = "<group>"; };
-		83349B0727487FFE0020639B /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		83349B0E274882BA0020639B /* SwiftSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSocket.framework; path = LoggingBase/SwiftSocket.framework; sourceTree = "<group>"; };
 		D08E47C4267CE852009F3A28 /* LoggingBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoggingBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D08E47C7267CE852009F3A28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D08E47C9267CE852009F3A28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,27 +57,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83349B0F274882BA0020639B /* SwiftSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83349AFF27487FE50020639B /* Socket */ = {
-			isa = PBXGroup;
-			children = (
-				83349B0227487FFD0020639B /* Result.swift */,
-				83349B0727487FFE0020639B /* Socket.swift */,
-				83349B0627487FFE0020639B /* SwiftSocket.h */,
-				83349B0327487FFE0020639B /* TCPClient.swift */,
-				83349B0427487FFE0020639B /* UDPClient.swift */,
-				83349B0527487FFE0020639B /* ytcpsocket.c */,
-				83349B0127487FFD0020639B /* yudpsocket.c */,
-				83349B0027487FFD0020639B /* LoggingBase-Bridging-Header.h */,
-			);
-			path = Socket;
-			sourceTree = "<group>";
-		};
 		D08E47BB267CE852009F3A28 = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +84,6 @@
 		D08E47C6267CE852009F3A28 /* LoggingBase */ = {
 			isa = PBXGroup;
 			children = (
-				83349AFF27487FE50020639B /* Socket */,
 				D0CE98E527383430006EC8AD /* LogWithPipe.swift */,
 				D0CE98E627383430006EC8AD /* LogWithUDP.swift */,
 				D0A84944272A65D200F4E694 /* DebugViewController.swift */,
@@ -128,6 +103,7 @@
 		D0CE98E927383499006EC8AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83349B0E274882BA0020639B /* SwiftSocket.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,18 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83349B0B27487FFE0020639B /* UDPClient.swift in Sources */,
 				D08E47CC267CE852009F3A28 /* ViewController.swift in Sources */,
 				D08E47C8267CE852009F3A28 /* AppDelegate.swift in Sources */,
-				83349B0A27487FFE0020639B /* TCPClient.swift in Sources */,
-				83349B0C27487FFE0020639B /* ytcpsocket.c in Sources */,
 				D0CE98E827383430006EC8AD /* LogWithUDP.swift in Sources */,
 				D0A84946272A65D200F4E694 /* DebugViewController.swift in Sources */,
 				D0CE98E727383430006EC8AD /* LogWithPipe.swift in Sources */,
-				83349B0D27487FFE0020639B /* Socket.swift in Sources */,
 				D08E47CA267CE852009F3A28 /* SceneDelegate.swift in Sources */,
-				83349B0927487FFE0020639B /* Result.swift in Sources */,
-				83349B0827487FFE0020639B /* yudpsocket.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
