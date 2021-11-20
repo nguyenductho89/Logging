@@ -6,13 +6,12 @@
 //
 
 import Foundation
-import SwiftSocket
 
 //nc -ul 12345
 class DebugNetworkManager {
     static let shared = DebugNetworkManager()
     private let consolePipe = ConsolePipe.share
-    private var host = "127.0.0.1"
+    private var host = "192.168.0.103"
     private var port = Int32(12345)
     private lazy var client = UDPClient(address: host, port: port)
     
